@@ -7,6 +7,8 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
+                <a href="{{ url('/categoria/create') }}" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Criar</a>
+
                 <table>
                     <tr>
                       <th>ID</th>

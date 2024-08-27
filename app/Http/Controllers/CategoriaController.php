@@ -25,7 +25,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        //dd('CREATE');
+        return view('categoria.categoria_create');
     }
 
     /**
