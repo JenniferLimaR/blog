@@ -36,7 +36,6 @@ class CategoriaController extends Controller
     {
         $validated = $request->validate([
             'nome' => 'required|min:5',
-
         ]);
 
         $categoria = new Categoria();
@@ -64,7 +63,8 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+      $categoria = Categoria::find($id);
+      return view('categoria.categoria_edit', compact('categoria'));
     }
 
     /**
@@ -72,7 +72,15 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'nome' => 'required|min:5',
+        ]);
+
+        $categoria = Categoria::find($id);
+        $categoria->nome = $request->nome;
+        $categoria->save();
+
+        return redirect()->route('categoria.index')->with('mensagem', 'Categoria alterada com sucesso!');
     }
 
     /**
@@ -80,6 +88,9 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+
+        return redirect()->route('categoria.index')->with('mensagem', 'Categoria excluida com sucesso!');
     }
 }
