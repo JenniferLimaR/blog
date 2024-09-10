@@ -24,8 +24,11 @@
 
 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nome</label>
-                        <input type="text" name="nome" value="{{$postagem->nome}}" class="form-control" placeholder="Digite o nome da postagem">
+                        <label for="exampleInputEmail1">Título</label>
+                        <input type="text" name="titulo" value="{{ $postagem->titulo }}" class="form-control" placeholder="Digite o nome da postagem">
+
+                        <label for="exampleInputEmail1">Conteúdo</label>
+                        <input type="text" name="titulo" value="{{ $postagem->conteudo }}" class="form-control" placeholder="Digite o nome da postagem">
                     </div>
 
                     <input type="submit" value="ENVIAR">
