@@ -15,19 +15,29 @@
                         @endforeach
                      </ul>
                  </div>
-                @endif0
+                @endif
 
                 <form method='POST' action="{{ url('/postagem') }}" >
 
                     @csrf
 
                     <div class="form-group">
+
+                        <label for="cars">Escolha uma Categoria:</label>
+
+                        <select name="categoria_id" class="form-control" id="cars">
+
+                          @foreach ($categorias as $value)
+                          <option value="{{ $value->id }}">{{ $value->nome }}</option>
+                          @endforeach
+
+                        </select>
+
                         <label for="exampleInputEmail1">Título</label>
                         <input type="text" name="titulo" class="form-control" placeholder="Digite o nome da postagem">
 
                         <label for="exampleInputEmail1">Conteúdo</label>
-                        <input type="text" name="titulo" class="form-control" placeholder="Digite o nome da postagem">
-                    </div>
+                        <textarea id="conteudo" class="form-control" name="conteudo" rows="4" cols="50"></textarea>
 
                     <input type="submit" value="ENVIAR">
                   </form>

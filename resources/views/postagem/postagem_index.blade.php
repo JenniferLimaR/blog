@@ -33,6 +33,7 @@
                         @foreach($postagens as $value)
                         <tr>
                           <td>{{ $value->id }}</td>
+                          <td>{{ $value->categoria->nome }}</td>
                           <td>{{ $value->titulo }}</td>
                           <td>
 

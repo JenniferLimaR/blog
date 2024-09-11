@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\postagem;
+use App\Models\Postagem;
+use App\Models\Categoria;
+use Illuminate\Support\Facades\Auth;
 
 class postagemController extends Controller
 {
@@ -25,8 +27,8 @@ class postagemController extends Controller
      */
     public function create()
     {
-        //dd('CREATE');
-        return view('postagem.postagem_create');
+        $categorias = Categoria::orderBy('nome','ASC')->get();
+        return view('postagem.postagem_create', compact('categorias'));
     }
 
     /**
@@ -35,11 +37,17 @@ class postagemController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'categoria_id' => 'required',
             'titulo' => 'required|min:5',
+            'conteudo' => 'required|min:5',
         ]);
 
         $postagem = new postagem();
+        $postagem->categoria_id = $request->categoria_id;
+        $postagem->user_id = Auth::id();
         $postagem->titulo = $request->titulo;
+        $postagem->conteudo = $request->conteudo;
+
         $postagem->save();
 
         return redirect()->route('postagem.index')->with('mensagem', 'postagem cadastrada com sucesso!');
