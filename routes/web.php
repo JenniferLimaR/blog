@@ -4,10 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PostagemController;
+use App\Http\Controllers\FeedController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+//Route::get('/', function () {
+//   return view('welcome');
+//});
+
+Route::get('/', [FeedController::class, 'welcome'])->name('welcome');
+
+Route::get('/feed/categoria', [FeedController::class, 'categoria'])->name('feed.categoria');
 
 Auth::routes();
 
