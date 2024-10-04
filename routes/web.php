@@ -16,6 +16,8 @@ Route::get('/', [FeedController::class, 'welcome'])->name('welcome');
 
 Route::get('/feed/categoria', [FeedController::class, 'categoria'])->name('feed.categoria');
 
+Route::get('/fedd/categoria/{id}', [FeedController::class, 'categoriaById'])->name('feed.categoriaById');
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
