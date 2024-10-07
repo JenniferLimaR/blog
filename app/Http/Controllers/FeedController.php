@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Postagem;
 use App\Models\Categoria;
+use App\Models\User;
 
 class FeedController extends Controller
 
@@ -25,5 +26,16 @@ class FeedController extends Controller
     $postagens = Postagem::where('categoria_id', $id)->orderBy('id','DESC')->get();
     return view('feed.categoriaById', compact('postagens'));
   }
+
+  public function autor(){
+    $autores = User::orderBy('name','ASC')->get();
+    return view('feed.autor', compact('autores'));
+  }
+
+  public function autorById($id){
+    $postagens = Postagem::where('user_id', $id)->orderBy('id','DESC')->get();
+    return view('feed.autorById', compact('postagens'));
+  }
+
 
 }

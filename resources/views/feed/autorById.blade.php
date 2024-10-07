@@ -5,6 +5,7 @@
 <article class="post">
     <header>
 
+
         @foreach ($postagens as $value)
 
         <div class="title">
@@ -18,17 +19,15 @@
     <span class="image featured"><img src="data:image/png;base64, {{ $value->imagem }} "alt="Imagem" /></span>
     <p>{!! $value->conteudo !!}</p>
 
-
     <footer>
         <ul class="stats">
-            <li><a href="#">{{ $value->categoria->nome }}</a></li>
+            <li><a href="#">General</a></li>
             <li><a href="#" class="icon solid fa-heart">28</a></li>
             <li><a href="#" class="icon solid fa-comment">128</a></li>
         </ul>
     </footer>
-
-    @endforeach
-
 </article>
+
+@endforeach
 
 @endsection
