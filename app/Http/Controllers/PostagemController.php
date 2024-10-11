@@ -14,12 +14,9 @@ class postagemController extends Controller
      */
     public function index()
     {
-        $postagens = postagem::orderby('titulo','ASC')->get();
-        //dd($postagems);
-
-        return view('postagem.postagem_index',compact('postagens'));
-
-        dd('postagem-INDEX');
+        $user_id = Auth::id();
+        $postagens = Postagem::where('user_id', $user_id)->orderBy('titulo', 'ASC')->get();
+        return view('postagem.postagem_index', compact('postagens'));
     }
 
     /**
@@ -38,7 +35,7 @@ class postagemController extends Controller
     {
         // 1 -pegar o conteudo do arquivo
         $content = file_get_contents ($request->file('imagem'));
-        //dd($content);
+
 
         $validated = $request->validate([
             'categoria_id' => 'required',
@@ -58,8 +55,6 @@ class postagemController extends Controller
         $postagem->save();
 
         return redirect()->route('postagem.index')->with('mensagem', 'postagem cadastrada com sucesso!');
-
-        //dd($request->all());
     }
 
     /**
@@ -67,8 +62,6 @@ class postagemController extends Controller
      */
     public function show(string $id)
     {
-        //dd('show: ' . $id);
-
         $postagem = postagem::find($id);
         return view('postagem.postagem_show', compact('postagem'));
     }
@@ -78,6 +71,17 @@ class postagemController extends Controller
      */
     public function edit(string $id)
     {
+
+      //verificar se o usuario pode editar essa postagem
+      $user_id = Auth::id();
+      $ehDoUsuario = Postagem::where('id', $id)->where('user_id', $user_id)->exists();
+
+      if(!$ehDoUsuario){
+        return redirect()->route('postagem.index')->with('mensagem', 'Você não tem permissão para alterar essa postagem!!!!');
+      }
+
+
+
       $categorias = Categoria::orderBy('nome','ASC')->get();
       $postagem = postagem::find($id);
       return view('postagem.postagem_edit', compact('postagem','categorias'));
@@ -88,6 +92,15 @@ class postagemController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+      //verificar se o usuario pode editar essa postagem
+      $user_id = Auth::id();
+      $ehDoUsuario = Postagem::where('id', $id)->where('user_id', $user_id)->exists();
+      if(!$ehDoUsuario){
+        return redirect()->route('postagem.index')->with('mensagem', 'Você não tem permissão para alterar essa postagem!!!!');
+      }
+
+
 
         // 1 -pegar o conteudo do arquivo
         if($request->file('imagem')){
