@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             Userseeder::class,
             Categoriaseeder::class,
             Postagemseeder::class,
+            Comentarioseeder::class,
         ]);
     }
 }

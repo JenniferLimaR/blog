@@ -22,7 +22,7 @@ class ComentarioSeeder extends Seeder
         DB::table('comentarios')->insert([
             'postagem_id' => 1,
             'user_id' =>1,
-            'conteudo' => 'Você calado é um poeta!'
+            'conteudo' => 'Você calado eh um poeta!'
         ]);
     }
 }

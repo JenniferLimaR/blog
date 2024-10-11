@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
-            $table->bigInterger('postagem_id');
-            $table->bigInterger('user_id');
+            $table->bigInteger('postagem_id');
+            $table->bigInteger('user_id');
             $table->text('conteudo');
             $table->timestamps();
         });

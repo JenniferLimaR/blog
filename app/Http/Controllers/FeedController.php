@@ -37,5 +37,10 @@ class FeedController extends Controller
     return view('feed.autorById', compact('postagens'));
   }
 
+  public function comentario($id){
+    $postagem = Postagem::find($id);
+    return view('feed.comentario', compact('postagem'));
+  }
+
 
 }
