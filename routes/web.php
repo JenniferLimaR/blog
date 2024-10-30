@@ -26,6 +26,8 @@ Route::get('/feed/postagem/{id}/comentario', [FeedController::class, 'comentario
 
 Route::post('comentario', [ComentarioController::class, 'store'])->name('comentario.store');
 
+Route::get('/feed/curtida/{id}', [FeedController::class, 'curtida'])->name('curtida');
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
