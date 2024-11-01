@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PostagemSeeder::class,
             ComentarioSeeder::class,
             CurtidaSeeder::class,
+            DenunciaPostagemSeeder::class,
         ]);
     }
 }

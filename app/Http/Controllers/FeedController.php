@@ -52,7 +52,7 @@ class FeedController extends Controller
     $user_id = Auth::id();
 
      //verifiacr se a curtida já existe
-     $curtida_exist = Curtida::where('postagem_id', $id)->where('user-id', $user_id)->exists();
+     $curtida_exist = Curtida::where('postagem_id', $id)->where('user_id', $user_id)->exists();
 
      if(!$curtida_exist){
         $curtida = new Curtida();
@@ -60,7 +60,7 @@ class FeedController extends Controller
         $curtida->user_id = $user_id;
         $curtida->save();
      }else{
-        $curtida = Curtida::where('postagem_id', $id)->where('user_id', $user_id)->get();
+        $curtida = Curtida::where('postagem_id', $id)->where('user_id', $user_id)->first();
         $curtida->delete();
      }
 
